@@ -35,8 +35,6 @@ export default function TextForm(props) {
     setText(newText);
 };
 
- 
-
     const handleclearClick=()=>{
         setText("")
     }
@@ -49,19 +47,19 @@ export default function TextForm(props) {
     <>
     <div className='container' style={{color: props.mode ==='dark'?'white':'#042743'}}>
   <h1>{props.heading}</h1>
-<div class="mb-3">
-  <textarea className="form-control" value={text} onChange={handleonChange} style={{backgroundColor: props.mode ==='dark'?'grey':'white',color:props.mode ==='dark'?'white':'#042743'}} id="mybox" rows="8"></textarea>
+<div className="mb-3">
+  <textarea className="form-control" value={text} onChange={handleonChange} style={{backgroundColor: props.mode ==='dark'?'#13466e':'white',color:props.mode ==='dark'?'white':'#042743'}} id="mybox" rows="8"></textarea>
 </div>
-<button className="btn btn-primary mx-2" onClick={handleupClick}>Convert to UpperCase</button>
-<button className="btn btn-primary mx-2" onClick={handleLowClick}>Convert to LowerCase</button>
-<button className="btn btn-primary mx-2" onClick={handleclearClick}>clear text</button>
-<button className="btn btn-primary mx-2" onClick={handleCapitalizeClick}>captialize first Letter</button>
-<button className="btn btn-primary mx-2" onClick={handleFormatText}>Format text</button>
+<button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleupClick}>Convert to UpperCase</button>
+<button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to LowerCase</button>
+<button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleclearClick}>clear text</button>
+<button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleCapitalizeClick}>captialize first Letter</button>
+<button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleFormatText}>Format text</button>
     </div>
     <div className="container"style={{color: props.mode ==='dark'?'white':'#042743'}} >
         <h2>Your Text Summary</h2>
-        <p>{text.split(" ").length-1} words and {text.length} character </p>
-        <p>{0.008* text.split(" ").length} Minutes to read</p>
+        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} character </p>
+        <p>{0.008* text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes to read</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:"enter something in the textbox to preview it"}</p>
     </div>
